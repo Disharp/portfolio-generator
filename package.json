@@ -20,5 +20,9 @@
   "dependencies": {
     "inquirer": "^9.1.4",
     "save": "^2.9.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.26.0",
+    "eslint-plugin-react": "^7.31.10"
   }
 }
