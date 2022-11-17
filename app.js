@@ -1,6 +1,14 @@
 //====================V3-933========commenting out per module direction=========================================
+// const fs = require('fs');
+//import * as fs from 'fs';
+// import {fs} from 'fs';
+import generatePage from './src/page-template.js';
 
+// const generatePage = require('./src/page-template');
 import inquirer from 'inquirer';
+//import { onErrorResumeNext } from 'rxjs';
+
+import fs, { writeFile } from 'fs';
 
 const promptUser = () => {
     return inquirer.prompt([
@@ -143,64 +151,70 @@ promptUser()
     // .then(answers => console.log(answers))
     .then(promptProject)
     .then(portfolioData => {
-        console.log(portfolioData);
-    })
+        const pageHTML = generatePage(portfolioData);
+
+
+        fs.writeFile('./index.html', pageHTML, err => {
+            if (err) throw new Error(err);
+            console.log('Page created! Check out index.html in this directory to see it!');
+        });
+    });
     // .then(projectAnswers => console.log(projectAnswers));
 
 
     //======================================================================================
-// const promptUser = () => {
+    // const promptUser = () => {
 
-//     return inquirer.prompt([
-//         {
-//             type: 'input',
-//             name: 'name',
-//             message: 'What is your name?'
-//         }
-//     ]);
-// };
+    //     return inquirer.prompt([
+    //         {
+    //             type: 'input',
+    //             name: 'name',
+    //             message: 'What is your name?'
+    //         }
+    //     ]);
+    // };
 
-// promptUser().then(answers => console.log(answers));
-//=========================================================================
-
-// const fs = require('fs');
-// const generatePage = require('./src/page-template.js');
-
-// const pageHTML = generatePage(realName, github) //to avoid deprecated warning
-
-// //write index file
-// fs.writeFile('./index.html', pageHTML, err => {
-//   if (err) throw new Error(err); //will stop running code
-//   console.log('Portfolio complete! Checkout index.html to see the output!');
-// });
+    // promptUser().then(answers => console.log(answers));
+    //=========================================================================
 
 
-//=====================================v2========================
-// const fs = require('fs');
-// const generatePage = require('./src/page-template.js');
 
-// const pageHTML = generatePage(realName, github) //to avoid deprecated warning
-// // profileDataArgs = process.argv.slice(2);
-// // const [name, github] = profileDataArgs;
+    // const pageHTML = generatePage(realName, github) //to avoid deprecated warning
 
-// //write index file
-// fs.writeFile('./index.html', pageHTML, err => {
-//   if (err) throw new Error(err); //will stop running code
-//   console.log('Portfolio complete! Checkout index.html to see the output!');
-// });
+    // //write index file
+    // fs.writeFile('./index.html', pageHTML, err => {
+    //   if (err) throw new Error(err); //will stop running code
+    //   console.log('Portfolio complete! Checkout index.html to see the output!');
+    // });
 
-//==========================================================
-// const printProfileData=(profileDataArr)=> {
-//     for (let i=0; i< profileDataArr.length; i++) {
-//         console.log(profileDataArr[i])
-//     }
 
-//     console.log("=================================")
+    //=====================================v2========================
+    // const fs = require('fs');
+    // const generatePage = require('./src/page-template.js');
 
-//     profileDataArr.forEach(profileItem => console.log(profileItem));
-//     });
-// };
+    // const pageHTML = generatePage(realName, github) //to avoid deprecated warning
+    // // profileDataArgs = process.argv.slice(2);
+    // // const [name, github] = profileDataArgs;
 
-// printProfileData(profileDataArgs);
+    // //write index file
+    // fs.writeFile('./index.html', pageHTML, err => {
+    //   if (err) throw new Error(err); //will stop running code
+    //   console.log('Portfolio complete! Checkout index.html to see the output!');
+    // });
 
-// =========================================
+    //==========================================================
+    // const printProfileData=(profileDataArr)=> {
+    //     for (let i=0; i< profileDataArr.length; i++) {
+    //         console.log(profileDataArr[i])
+    //     }
+
+    //     console.log("=================================")
+
+    //     profileDataArr.forEach(profileItem => console.log(profileItem));
+    //     });
+    // };
+
+    // printProfileData(profileDataArgs);
+
+    // =========================================j
+
